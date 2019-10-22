@@ -23,8 +23,8 @@ Building a good dialog is hard - there are many things you might not think about
 * **Accessible** - The dialog is accessible. When opening the dialog, the focus is trapped inside the dialog and outside scrolling is blocked. When the dialog is closed, the focus is restored to what it was before opening it. It is also possible to close the dialog pressing the escape key.
 * **Works well with [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)** - The dialog works very well with Shadow DOM and is therefore super Web Component friendly. Many people don't think about Shadow DOM when they build a dialog - this one has been build with Web Components in mind.
 * **Incredible lightweight** - The footprint of the dialog is around 2500 bytes gzipped.
-* **Customizable** - It is easy to customize the dialog with a few [CSS variables](https://www.w3.org/TR/css-variables-1/) or styling the exposed [shadow parts](https://www.w3.org/TR/css-shadow-parts-1/).
-* **Works with [all frameworks](https://custom-elements-everywhere.com/)** - It exposes a [web component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that can be used with your favorite framework.
+* **Customizable** - It is easy to customize the dialog with a few [CSS variables](https://www.w3.org/TR/css-variables-1/) or styling the exposed [Shadow Parts](https://www.w3.org/TR/css-shadow-parts-1/).
+* **Works with [all frameworks](https://custom-elements-everywhere.com/)** - It exposes a [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that can be used with your favorite framework.
 * **Can be nested** - The dialogs can spawn on top of each other.
 
 
