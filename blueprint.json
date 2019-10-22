@@ -1,5 +1,6 @@
 {
 	"demo": "https://appnest-demo.firebaseapp.com/web-dialog/",
+	"text": "Try the dialog yourself at <a href=\"https://codepen.io/andreasbm/pen/abbJvme\">Codepen</a>.",
 	"documentationConfig": {
 		"markdown": {
 			"titleLevel": 3

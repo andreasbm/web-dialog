@@ -8,7 +8,7 @@
 
 <p align="center">
   <b>A highly accessible, customizable and lightweight dialog.</b></br>
-  <sub> Go here to see a demo <a href="https://appnest-demo.firebaseapp.com/web-dialog/">https://appnest-demo.firebaseapp.com/web-dialog/</a>.<sub>
+  <sub>Try the dialog yourself at <a href="https://codepen.io/andreasbm/pen/abbJvme">Codepen</a>. Go here to see a demo <a href="https://appnest-demo.firebaseapp.com/web-dialog/">https://appnest-demo.firebaseapp.com/web-dialog/</a>.<sub>
 </p>
 
 <br />
