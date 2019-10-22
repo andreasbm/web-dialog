@@ -197,6 +197,12 @@ $template.innerText = `This is some content for the dialog!`;
 openDialog({$template});
 ```
 
+When the `openDialog(...)` function above is called it will look like this.
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example8.png" width="600">
+</p>
+
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#documentation)
 

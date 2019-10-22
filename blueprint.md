@@ -150,6 +150,12 @@ $template.innerText = `This is some content for the dialog!`;
 openDialog({$template});
 ```
 
+When the `openDialog(...)` function above is called it will look like this.
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example8.png" width="600">
+</p>
+
 ## Documentation
 
 This section documents the `attributes`, `css variables` and `slots` of the web components this library exposes.
