@@ -52,9 +52,7 @@ $dialog.open = true;
 
 When the dialog opens it will look like this.
 
-<p align="center">
-	<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example1.png" width="600">
-</p>
+<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example1.png" width="600">
 
 ## Center the dialog
 
@@ -68,9 +66,7 @@ You probably noticed the dialog is not centered as default. This is because, as 
 
 When opened the dialog will look like this.
 
-<p align="center">
-	<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example2.png" width="600">
-</p>
+<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example2.png" width="600">
 
 ## Sticky header and footer
 
@@ -92,9 +88,7 @@ What about a sticky header and footer? No problem at all. Just make sure to use 
 
 To make thing look nice you can add some CSS and apply a bottom border to the header, a top border to the footer and add some padding to the elements. When opened the dialog will look like this.
 
-<p align="center">
-	<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example4.png" width="600">
-</p>
+<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example4.png" width="600">
 
 ## Customize
 
@@ -126,9 +120,7 @@ web-dialog {
 
 When opened the dialog will look like this.
 
-<p align="center">
-	<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example5.png" width="600">
-</p>
+<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example5.png" width="600">
 
 ## Helpers
 
@@ -152,9 +144,7 @@ openDialog({$template});
 
 When the `openDialog(...)` function above is called it will look like this.
 
-<p align="center">
-	<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example8.png" width="600">
-</p>
+<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example8.png" width="600">
 
 ## Documentation
 
