@@ -143,14 +143,17 @@ To make thing look nice you can add some CSS and apply a bottom border to the he
 
 The dialog can be customized by setting some CSS variables or modifying the shadow parts. You can read about all of the CSS variables you can set and shadow parts you can change [here](#-documentation). Let's say you want to create a fullscreen dialog. Then you could change the following CSS variable to achieve it.
 
-```html
-<style>
+```css
+web-dialog {
   --dialog-container-padding: 0;
   --dialog-border-radius: 0;
   --dialog-max-width: 100vw;
   --dialog-height: 100%;
   --dialog-animation-duration: 0;
-</style>
+}
+```
+
+```html
 <web-dialog>
   <header>
     <h3>The standard Lorem Ipsum passage</h3>
