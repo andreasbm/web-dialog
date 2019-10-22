@@ -1,0 +1,67 @@
+{
+	"name": "web-dialog",
+	"version": "0.0.1",
+	"description": "A highly accessible, customizable and lightweight dialog.",
+	"types": "index.d.ts",
+	"module": "index.js",
+	"main": "index.js",
+	"author": "Andreas Mehlsen",
+	"publishConfig": {
+		"access": "public"
+	},
+	"bugs": {
+		"url": "https://github.com/andreasbm/web-dialog/issues"
+	},
+	"homepage": "https://github.com/andreasbm/web-dialog#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/andreasbm/web-dialog.git"
+	},
+	"keywords": [
+		"web",
+		"accessibility",
+		"accessible",
+		"a11y",
+		"dialog",
+		"modal",
+		"focus",
+		"trap",
+		"components",
+		"custom",
+		"elements",
+		"component",
+		"element"
+	],
+	"scripts": {
+		"b:dev": "rollup -c rollup.config.ts --environment NODE_ENV:dev",
+		"b:prod": "rollup -c rollup.config.ts --environment NODE_ENV:prod",
+		"s:dev": "rollup -c rollup.config.ts --watch --environment NODE_ENV:dev",
+		"s:prod": "rollup -c rollup.config.ts --watch --environment NODE_ENV:prod",
+		"s": "npm run s:dev",
+		"readme": "readme generate",
+		"b:lib": "rollup -c rollup.config.build.ts",
+		"ncu": "ncu -u -a && npm update && npm install",
+		"postversion": "npm run readme && npm run b:lib",
+		"publish:patch": "np patch --contents=dist --no-cleanup",
+		"publish:minor": "np minor --contents=dist --no-cleanup",
+		"publish:major": "np major --contents=dist --no-cleanup"
+	},
+	"devDependencies": {
+		"@appnest/web-config": "^0.4.29",
+		"@appnest/readme": "^1.2.4",
+		"@a11y/focus-trap": "^1.0.4"
+	},
+	"contributors": [
+		{
+			"name": "Andreas Mehlsen",
+			"url": "https://twitter.com/andreasmehlsen",
+			"img": "https://avatars1.githubusercontent.com/u/6267397?s=460&v=4"
+		},
+		{
+			"name": "You?",
+			"img": "https://joeschmoe.io/api/v1/random",
+			"url": "https://github.com/andreasbm/weightless/blob/master/CONTRIBUTING.md"
+		}
+	],
+	"license": "MIT"
+}

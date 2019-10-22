@@ -1,0 +1,12 @@
+{
+	"demo": "https://appnest-demo.firebaseapp.com/web-dialog/",
+	"documentationConfig": {
+		"markdown": {
+			"titleLevel": 3
+		}
+	},
+	"ids": {
+		"github": "andreasbm/web-dialog",
+		"npm": "web-dialog"
+	}
+}
