@@ -31,7 +31,7 @@ To use this library you first need to get import the library through code somewh
 
 ```html
 <web-dialog>
-	<span>This is a default dialog!</span>
+  <span>This is a default dialog!</span>
 </web-dialog>
 ```
 
@@ -39,7 +39,7 @@ To open the dialog you will have to add the `open` attribute to the element.
 
 ```html
 <web-dialog open>
-	<span>This is a default dialog!</span>
+  <span>This is a default dialog!</span>
 </web-dialog>
 ```
 
@@ -62,7 +62,7 @@ You probably noticed the dialog is not centered as default. This is because, as 
 
 ```html
 <web-dialog center>
-	<span>This is a default centered dialog!</span>
+  <span>This is a default centered dialog!</span>
 </web-dialog>
 ```
 
@@ -100,7 +100,7 @@ To make thing look nice you can add some CSS and apply a bottom border to the he
 
 The dialog can be customized by setting some CSS variables or modifying the shadow parts. You can read about all of the CSS variables you can set and shadow parts you can change [here](#-documentation). Let's say you want to create a fullscreen dialog. Then you could change the following CSS variable to achieve it.
 
-```
+```html
 <style>
   --dialog-container-padding: 0;
   --dialog-border-radius: 0;
