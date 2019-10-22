@@ -25,7 +25,7 @@ Building a good dialog is hard - there are many things you might not think about
 * **Incredible lightweight** - The footprint of the dialog is around 2500 bytes gzipped.
 * **Customizable** - It is easy to customize the dialog with a few [CSS variables](https://www.w3.org/TR/css-variables-1/) or styling the exposed [shadow parts](https://www.w3.org/TR/css-shadow-parts-1/).
 * **Works with [all frameworks](https://custom-elements-everywhere.com/)** - It exposes a [web component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that can be used with your favorite framework.
-* **Can be nested** - The dialogs can spawn on to of each other.
+* **Can be nested** - The dialogs can spawn on top of each other.
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
