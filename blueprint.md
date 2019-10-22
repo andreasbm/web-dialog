@@ -130,6 +130,25 @@ When opened the dialog will look like this.
 	<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example5.png" width="600">
 </p>
 
+## Helpers
+
+If you want to use the dialog programmatically you can use the `openDialog(...)` function. This function makes sure to append content inside the dialog, adds it to the DOM and removes it when it closes. You can give the following parameters to the function.
+
+* **$template** - A DOM element that will be placed inside the dialog as content.
+* **$container** - The container where the dialog will be placed inside. As default this is the `body` element.
+* **center** - Whether the dialog is centered. As default this is false.
+* **initialize** - Control what instance of WebDialog is created. This is smart if you for example have extended the WebDialog class and want to open that dialog instead.
+
+In it's most simple form you can open a dialog like this:
+
+```js
+import {openDialog} from "web-dialog";
+
+const $template = document.createElement("div");
+$template.innerText = `This is some content for the dialog!`;
+
+openDialog({$template});
+```
 
 ## Documentation
 

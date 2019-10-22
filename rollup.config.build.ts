@@ -17,6 +17,8 @@ const folders = {
 const files = {
 	src_index: join(folders.src, "index.ts"),
 	web_dialog: join(folders.src, "web-dialog.ts"),
+	util: join(folders.src, "util.ts"),
+	open_dialog: join(folders.src, "open-dialog.ts"),
 
 	// Package
 	src_package: resolve("package.json"),
@@ -30,7 +32,9 @@ const files = {
 export default {
 	input: {
 		index: files.src_index,
-		"web-dialog": files.web_dialog
+		"web-dialog": files.web_dialog,
+		"open-dialog": files.open_dialog,
+		"util": files.util
 	},
 	output: [
 		{

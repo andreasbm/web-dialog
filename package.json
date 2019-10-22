@@ -48,7 +48,9 @@
 	},
 	"devDependencies": {
 		"@appnest/web-config": "^0.4.29",
-		"@appnest/readme": "^1.2.4",
+		"@appnest/readme": "^1.2.4"
+	},
+	"dependencies": {
 		"@a11y/focus-trap": "^1.0.4"
 	},
 	"contributors": [
