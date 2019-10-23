@@ -60,13 +60,7 @@ export default {
 
 		// Production
 		...(isProd ? defaultProdPlugins({
-			dist: folders.dist,
-			budgetConfig: {
-				sizes: {
-					".js": 1024 * 170,
-					".jpg": 1024 * 400
-				}
-			}
+			dist: folders.dist
 		}) : [])
 	],
 	treeshake: isProd,
