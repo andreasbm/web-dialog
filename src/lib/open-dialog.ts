@@ -23,7 +23,9 @@ export function openDialog<T extends WebDialog<R>, R = any> ({
 
 	// Construct the dialog
 	const $dialog = initialize();
-	$dialog.center = center;
+
+	// Set the properties
+	center != null ? $dialog.center = center : {};
 
 	// Attach the template to the dialog
 	$content != null? (

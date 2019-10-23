@@ -283,7 +283,7 @@ openDialog({
     <h3>Do you like this dialog?</h3>
     <button @click="${() => $dialog.open = false}">Umm, yeah!</button>
   `, $dialog)
-}));
+});
 ```
 
 
@@ -291,7 +291,7 @@ openDialog({
 
 ## ➤ Extend WebDialog
 
-It is totally possible to extend the web dialog. The only thing you have to do it define a new class and extend the WebDialog class. Then you can add your custom logic and define a new custom element with your new class. Here's an example of what you could if you for example want a custom dialog that shows an image.
+It is totally possible to extend the dialog. The only thing you have to do it define a new class and extend the `WebDialog` class. Then you can add your custom logic and define a new custom element with your new class. Here's an example of what you could if you for example want a custom dialog that shows an image.
 
 ```js
 import { WebDialog } from "web-dialog";
@@ -327,7 +327,6 @@ class ImageDialog extends WebDialog {
     
     // Get a reference to the img element
     this.$img = this.shadowRoot.querySelector("#img");
-    this.$img.src = this.src;
   }
   
   // Each time the src attribute changes we set the src of the image element
@@ -340,14 +339,29 @@ class ImageDialog extends WebDialog {
   }
 }
 
-// Remember to define your custom element
+// Remember to define your new custom element
 customElements.define("image-dialog", ImageDialog);
 ```
 
-Then you would be able to use it like this.
+After you have defined your new dialog you are be able to use it like this.
 
 ```html
 <image-dialog open center src="https://i.ytimg.com/vi/NCZ0eg1zEvw/maxresdefault.jpg"></image-dialog>
+```
+
+Or this
+
+```js
+import {openDialog} from "web-dialog";
+
+openDialog({
+  initialize: () => {
+    const $dialog = new ImageDialog();
+    $dialog.src = `https://i.ytimg.com/vi/NCZ0eg1zEvw/maxresdefault.jpg`;
+    $dialog.center = true;
+    return $dialog;
+  }
+});
 ```
 
 When our custom dialog opens it will look like this.

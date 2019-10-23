@@ -4,7 +4,6 @@ import { LightBoxDialog } from "./dialogs/lightbox-dialog";
 import { NestedDialog } from "./dialogs/nested-dialog";
 import { ResultDialog } from "./dialogs/result-dialog";
 import sharedStyles from "./styles/shared.scss";
-import "./dialogs/image-dialog";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -104,8 +103,6 @@ template.innerHTML = `
 		<br />
 		<p id="returnvalue-result"></p>
 	</div>
-	
-	<image-dialog open center src="https://i.ytimg.com/vi/NCZ0eg1zEvw/maxresdefault.jpg"></image-dialog>
 `;
 
 export class WebDialogApp extends HTMLElement {
