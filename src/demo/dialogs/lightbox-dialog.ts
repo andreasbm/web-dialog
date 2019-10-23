@@ -29,8 +29,8 @@ template.innerHTML = `
 			background: lightgrey;
 		}
 	</style>
-	<img id="img" />
-	<button id="close">𝗫</button>
+	<img id="img" alt="Image of a cute cat" />
+	<button id="close" aria-label="Close this dialog window">𝗫</button>
 `;
 
 export class LightBoxDialog extends WebDialog {
