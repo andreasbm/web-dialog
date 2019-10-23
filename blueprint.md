@@ -171,7 +171,7 @@ $template.innerHTML = `
 `;
 
 openDialog({
-	$content: $template.content.cloneNode(true)
+  $content: $template.content.cloneNode(true)
 });
 ```
 
