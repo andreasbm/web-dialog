@@ -122,29 +122,178 @@ When opened the dialog will look like this.
 
 <img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example5.png" width="600">
 
-## Helpers
+## Events
 
-If you want to use the dialog programmatically you can use the `openDialog(...)` function. This function makes sure to append content inside the dialog, adds it to the DOM and removes it when it closes. You can give the following parameters to the function.
+The dialog can dispatch 3 different events.
 
-* **$template** - A DOM element that will be placed inside the dialog as content.
+* **open** - The first event is the `open` event which is dispatched when the dialog opens.
+* **closing** - The second event is the `closing` event which is dispatched when the dialog is about to close due to the user clicking on the backdrop or pressing escape. If `.preventDefault()` is called on this event the dialog won't close.
+* **close** - The third event is the <code>close</code> event which is dispatched when the dialog closes. If `.result` is set on the dialog, the `.detail` property of the `close` event will have the value of the result.
+
+Here's an example on how you'd use the events.
+
+```js
+const $dialog = document.querySelector("dialog");
+
+$dialog.addEventListener("open", () => {
+  console.log("The dialog opened!");
+});
+
+$dialog.addEventListener("closing", () => {
+  console.log("The dialog is about to close because the backdrop was clicked or because escape was pressed!");
+
+  // Don't allow the dialog to close
+  e.preventDefault();
+});
+
+$dialog.addEventListener("close", e => {
+  console.log("The dialog closed!", e.detail);
+});
+```
+
+## `openDialog(...)`
+
+If you want to use the dialog programmatically you can use the `openDialog(...)` function. This function makes sure to append content inside the dialog, adds it to the DOM and removes it when it closes. You can give an object with the following fields to the function.
+
+* **$content** - A DOM element that will be placed inside the dialog as content. This can also be a function that takes the dialog and appends the content for the dialog.
 * **$container** - The container where the dialog will be placed inside. As default this is the `body` element.
 * **center** - Whether the dialog is centered. As default this is false.
-* **initialize** - Control what instance of WebDialog is created. This is smart if you for example have extended the WebDialog class and want to open that dialog instead.
+* **initialize** - A function that returns an instance of WebDialog. This is smart to overwrite if you for example have extended the WebDialog class and want to open that custom dialog instead.
 
 In it's most simple form you can open a dialog like this:
 
 ```js
 import {openDialog} from "web-dialog";
 
-const $template = document.createElement("div");
-$template.innerText = `This is some content for the dialog!`;
+const $template = document.createElement("template");
+$template.innerHTML = `
+  <span>This is some content for the dialog!</span>
+`;
 
-openDialog({$template});
+openDialog({
+	$content: $template.content.cloneNode(true)
+});
 ```
 
 When the `openDialog(...)` function above is called it will look like this.
 
 <img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example8.png" width="600">
+
+The `openDialog(...)` function returns an object with the following two properties.
+
+* **$dialog** - The dialog HTML element.
+* **resolver** - A promise that will resolve with the result of the dialog when closed.
+
+Based on the information above, here's a little more advanced example.
+
+```js
+import {openDialog} from "web-dialog";
+
+// Create a template
+const $template = document.createElement("template");
+$template.innerHTML = `
+  <button data-value="no">No</button>
+  <button data-value="yes">Yes</button>
+`;
+
+// Open the dialog
+const {$dialog, resolver} = openDialog({
+  $content: $template.content.cloneNode(true)
+});
+
+// Attach an event listener that sets the result and closes the dialog when a button is clicked
+$dialog.addEventListener("click", e => {
+  $dialog.result = e.target.getAttribute("data-value");
+  $dialog.open = false;
+});
+
+// Wait for the result
+const result = await resolver;
+
+// Print the result
+console.log(`The result was ${result}`);
+```
+
+## lit-html & lit-element
+
+Here's a little trick for you if you use [lit-element](https://github.com/polymer/lit-element) or [lit-html](https://github.com/polymer/lit-html). If you want to quickly open a dialog with some content you can use the render function of `lit-html` like this.
+
+```js
+import {openDialog} from "web-dialog";
+import {render} from "lit-html";
+
+openDialog({
+  $content: $dialog => render(html`
+    <h3>Do you like this dialog?</h3>
+    <button @click="${() => $dialog.open = false}">Umm, yeah!</button>
+  `, $dialog)
+}));
+```
+
+## Extend WebDialog
+
+It is totally possible to extend the web dialog. The only thing you have to do it define a new class and extend the WebDialog class. Then you can add your custom logic and define a new custom element with your new class. Here's an example of what you could if you for example want a custom dialog that shows an image.
+
+```js
+import { WebDialog } from "web-dialog";
+
+// Create a template for the content of the dialog
+const $template = document.createElement("template");
+$template.innerHTML = `
+  <style>
+    #img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+  </style>
+  <img id="img" />
+`;
+
+// Create a class extending the WebDialog class.
+class ImageDialog extends WebDialog {
+
+  // Observe the src attribute so we can react each time it changes
+  static get observedAttributes () { return ["src"]; }
+
+  // Make sure the src property is getting reflected as an attribute
+  get src () { return this.hasAttribute("src"); }
+  set src (value) { this.setAttribute("src", value); }
+  
+  constructor () {
+    super();
+    
+    // Append the dialog content
+    this.$dialog.appendChild($template.content.cloneNode(true));
+    
+    // Get a reference to the img element
+    this.$img = this.shadowRoot.querySelector("#img");
+    this.$img.src = this.src;
+  }
+  
+  // Each time the src attribute changes we set the src of the image element
+  attributeChangedCallback (name, newValue) {
+    switch (name) {
+      case "src":
+        this.$img.src = newValue;
+        break;
+    }
+  }
+}
+
+// Remember to define your custom element
+customElements.define("image-dialog", ImageDialog);
+```
+
+Then you would be able to use it like this.
+
+```html
+<image-dialog open center src="https://i.ytimg.com/vi/NCZ0eg1zEvw/maxresdefault.jpg"></image-dialog>
+```
+
+When our custom dialog opens it will look like this.
+
+<img src="https://raw.githubusercontent.com/andreasbm/web-dialog/master/examples/example9.png" width="600">
 
 ## Documentation
 

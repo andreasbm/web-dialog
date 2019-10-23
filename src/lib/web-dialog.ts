@@ -34,7 +34,7 @@ template.innerHTML = `
  * @part backdrop - Backdrop part.
  * @part dialog - Dialog part.
  */
-export class WebDialog extends HTMLElement {
+export class WebDialog<R = any> extends HTMLElement {
 	static get observedAttributes () {
 		return ["open", "center"];
 	}
@@ -63,6 +63,9 @@ export class WebDialog extends HTMLElement {
 		value ? this.setAttribute("center", "") : this.removeAttribute("center");
 	}
 
+	// Result of the dialog
+	public result?: R;
+
 	protected $dialog!: FocusTrap;
 	protected $backdrop!: HTMLElement;
 	protected $scrollContainer: HTMLElement = document.documentElement;
@@ -84,7 +87,7 @@ export class WebDialog extends HTMLElement {
 
 		// Set aria attributes
 		this.setAttribute("aria-modal", "true");
-		this.$dialog.setAttribute("role", "dialog");
+		this.$dialog.setAttribute("role", "alertdialog");
 	}
 
 	/**
@@ -208,7 +211,7 @@ export class WebDialog extends HTMLElement {
 		}
 
 		// Dispatch an event so the rest of the world knows we closed
-		this.dispatchEvent(new CustomEvent("close"));
+		this.dispatchEvent(new CustomEvent("close", {detail: this.result}));
 	}
 
 	/**
@@ -224,3 +227,9 @@ export class WebDialog extends HTMLElement {
 }
 
 customElements.define("web-dialog", WebDialog);
+
+declare global {
+	interface HTMLElementTagNameMap {
+		"web-dialog": WebDialog;
+	}
+}

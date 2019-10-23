@@ -2,7 +2,9 @@ import { openDialog } from "../lib/open-dialog";
 import { ContentDialog } from "./dialogs/content-dialog";
 import { LightBoxDialog } from "./dialogs/lightbox-dialog";
 import { NestedDialog } from "./dialogs/nested-dialog";
+import { ResultDialog } from "./dialogs/result-dialog";
 import sharedStyles from "./styles/shared.scss";
+import "./dialogs/image-dialog";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -85,7 +87,7 @@ template.innerHTML = `
 		<button id="content-center-fullscreen-button">Click to open dialog</button>
 	</div>
 	<div id="area">
-		<h3>Nested dialogs</h3>
+		<h3>The dialogs can nest</h3>
 		<p>It is possible to open dialogs within one another! Click on the button below to try it out.</p>
 		<button id="nested-button">Click to open dialog</button>
 	</div>
@@ -94,6 +96,16 @@ template.innerHTML = `
 		<p>If you really want, you can add your own close button. Click on the button below to open a dialog with some cute cats and a close button.</p>
 		<button id="lightbox-button">Click to open dialog</button>
 	</div>
+	<div id="area">
+		<h3>What events does the dialog dispatch?</h3>
+		<p>The dialog can dispatch 3 different events. The first event is the <code>open</code> event which is dispatched when the dialog opens. The second event is the <code>closing</code> event which is dispatched when the dialog is about to close due to the user clicking on the backdrop or pressing escape. If <code>.preventDefault()</code> is called on this event the dialog won't close. The third event is the <code>close</code> event which is dispatched when the dialog closes. If <code>.result</code> is set on the dialog, the <code>.detail</code> property of the <code>close</code> event will have the value of the result.</p>
+		<button id="returnvalue-button">Click to open dialog</button>
+		<br />
+		<br />
+		<p id="returnvalue-result"></p>
+	</div>
+	
+	<image-dialog open center src="https://i.ytimg.com/vi/NCZ0eg1zEvw/maxresdefault.jpg"></image-dialog>
 `;
 
 export class WebDialogApp extends HTMLElement {
@@ -104,14 +116,19 @@ export class WebDialogApp extends HTMLElement {
 
 		shadow.querySelector("#default-button")!.addEventListener("click", () => {
 			openDialog({
-				$template: document.createTextNode(`This is a default dialog!`)
+				$content: document.createTextNode(`This is a default dialog!`)
 			});
 		});
 
 		shadow.querySelector("#default-center-button")!.addEventListener("click", () => {
+			const $template = document.createElement("template");
+			$template.innerHTML = `
+				<span>This is a default centered dialog!</span>
+			`;
+
 			openDialog({
 				center: true,
-				$template: document.createTextNode(`This is a default centered dialog!`)
+				$content: $template.content.cloneNode(true)
 			});
 		});
 
@@ -169,6 +186,17 @@ export class WebDialogApp extends HTMLElement {
 				center: true,
 				initialize: () => new NestedDialog()
 			});
+		});
+
+		shadow.querySelector("#returnvalue-button")!.addEventListener("click", async () => {
+			const {resolver} = openDialog({
+				center: true,
+				initialize: () => new ResultDialog()
+			});
+
+			// Wait for the result
+			const result = await resolver;
+			shadow.querySelector<HTMLElement>("#returnvalue-result")!.innerText = `Result: ${result || "Nothing.."}`;
 		});
 	}
 }
