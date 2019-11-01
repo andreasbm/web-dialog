@@ -225,7 +225,7 @@ import {render} from "lit-html";
 openDialog({
   $content: $dialog => render(html`
     <h3>Do you like this dialog?</h3>
-    <button @click="${() => $dialog.open = false}">Umm, yeah!</button>
+    <button @click="${() => $dialog.close()}">Umm, yeah!</button>
   `, $dialog)
 });
 ```

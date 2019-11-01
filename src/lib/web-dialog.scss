@@ -52,13 +52,13 @@
 	padding: var(--dialog-padding, 24px);
 	max-height: var(--dialog-max-height, unset);
 	height: var(--dialog-height, auto);
+	color: var(--dialog-color, currentColor);
+	background: var(--dialog-bg, white);
 	z-index: 1;
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;
-	color: inherit;
-	background: white;
 	border: none;
 }
 

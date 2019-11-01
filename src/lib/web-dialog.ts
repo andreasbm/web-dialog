@@ -31,6 +31,8 @@ template.innerHTML = `
  * @cssprop --dialog-max-width - Max width of the dialog.
  * @cssprop --dialog-width - Width of the dialog.
  * @cssprop --dialog-padding - Padding of the dialog.
+ * @cssprop --dialog-color - Color of the dialog.
+ * @cssprop --dialog-bg - Background of the dialog.
  * @part backdrop - Backdrop part.
  * @part dialog - Dialog part.
  */
@@ -111,11 +113,27 @@ export class WebDialog<R = any> extends HTMLElement {
 	}
 
 	/**
+	 * Shows the dialog.
+	 */
+	show () {
+		this.open = true;
+	}
+
+	/**
+	 * Closes the dialog with a result.
+	 * @param result
+	 */
+	close (result?: R) {
+		this.result = result;
+		this.open = false;
+	}
+
+	/**
 	 * Closes the dialog when the backdrop is clicked.
 	 */
 	onBackdropClick () {
 		if (this.assertClosing()) {
-			this.open = false;
+			this.close();
 		}
 	}
 
@@ -126,7 +144,7 @@ export class WebDialog<R = any> extends HTMLElement {
 		switch (e.code) {
 			case "Escape":
 				if (this.assertClosing()) {
-					this.open = false;
+					this.close();
 
 					// If there are more dialogs, we don't want to close those also :-)
 					e.stopImmediatePropagation();

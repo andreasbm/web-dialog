@@ -12,7 +12,7 @@ template.innerHTML = `
 	</style>
 	<form>
 		<h3>Enter your name</h3>
-		<input name="name" placeholder="Enter your name.."/>
+		<input name="name" placeholder="Enter your name.." required/>
 		<button type="submit">Save</button>
 	</form>
 `;
@@ -22,12 +22,20 @@ export class ResultDialog extends WebDialog {
 		super();
 		this.$dialog.appendChild(template.content.cloneNode(true));
 
+		const $form = this.shadowRoot!.querySelector<HTMLFormElement>("form")!;
+
 		// Listen for the submit event on the form and set the result
-		this.shadowRoot!.querySelector<HTMLFormElement>("form")!.addEventListener("submit", (e: Event) => {
+		$form.addEventListener("submit", (e: Event) => {
 			e.preventDefault();
 			const formData = new FormData(e.target as HTMLFormElement);
-			this.result = formData.get("name");
-			this.open = false;
+			this.close(formData.get("name"));
+		});
+
+		this.addEventListener("closing", (e: Event) => {
+			if ($form.checkValidity() && !confirm(`You have unsafed changed. Do you really want to close the dialog?`)) {
+				e.preventDefault();
+			}
+
 		});
 	}
 }

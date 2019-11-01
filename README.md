@@ -224,7 +224,7 @@ $template.innerHTML = `
 `;
 
 openDialog({
-	$content: $template.content.cloneNode(true)
+  $content: $template.content.cloneNode(true)
 });
 ```
 
@@ -281,7 +281,7 @@ import {render} from "lit-html";
 openDialog({
   $content: $dialog => render(html`
     <h3>Do you like this dialog?</h3>
-    <button @click="${() => $dialog.open = false}">Umm, yeah!</button>
+    <button @click="${() => $dialog.close()}">Umm, yeah!</button>
   `, $dialog)
 });
 ```
@@ -406,8 +406,10 @@ A dialog web component that can be used to display highly interruptive messages.
 | `--dialog-animation-duration` | Duration of the animation duration.          |
 | `--dialog-animation-easing`   | Easing of the animation.                     |
 | `--dialog-backdrop-bg`        | Background of the backdrop.                  |
+| `--dialog-bg`                 | Background of the dialog.                    |
 | `--dialog-border-radius`      | Border radius of the dialog.                 |
 | `--dialog-box-shadow`         | Box shadow of the dialog.                    |
+| `--dialog-color`              | Color of the dialog.                         |
 | `--dialog-container-padding`  | Padding of the host container of the dialog. |
 | `--dialog-height`             | Height of the dialog.                        |
 | `--dialog-max-height`         | Max height of the dialog.                    |

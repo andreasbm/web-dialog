@@ -44,6 +44,6 @@ export function openDialog<T extends WebDialog<R>, R = any> ({
 
 	// Append the dialog to the container and open it
 	$container.appendChild($dialog);
-	$dialog.open = true;
+	$dialog.show();
 	return {$dialog, resolver};
 }
