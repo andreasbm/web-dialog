@@ -33,8 +33,8 @@ template.innerHTML = `
  * @cssprop --dialog-padding - Padding of the dialog.
  * @cssprop --dialog-color - Color of the dialog.
  * @cssprop --dialog-bg - Background of the dialog.
- * @part backdrop - Backdrop part.
- * @part dialog - Dialog part.
+ * @csspart backdrop - Backdrop part.
+ * @csspart dialog - Dialog part.
  */
 export class WebDialog<R = any> extends HTMLElement {
 	static get observedAttributes () {

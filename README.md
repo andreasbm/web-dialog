@@ -45,6 +45,7 @@ Building a good dialog is hard - there are many things you might not think about
 	* [web-dialog](#web-dialog)
 		* [Properties](#properties)
 		* [Events](#events)
+		* [CSS Shadow Parts](#css-shadow-parts)
 		* [CSS Custom Properties](#css-custom-properties)
 * [➤ Contributors](#-contributors)
 * [➤ License](#-license)
@@ -398,6 +399,13 @@ A dialog web component that can be used to display highly interruptive messages.
 | `close`   | This event is fired when the dialog closes.      |
 | `closing` | This event is fired before the dialog is closed by clicking escape or on the backdrop. The event is cancellable. |
 | `open`    | This event is fired when the dialog opens.       |
+
+#### CSS Shadow Parts
+
+| Part       | Description    |
+|------------|----------------|
+| `backdrop` | Backdrop part. |
+| `dialog`   | Dialog part.   |
 
 #### CSS Custom Properties
 
