@@ -232,7 +232,7 @@ openDialog({
 
 ## Extend WebDialog
 
-It is totally possible to extend the dialog. The only thing you have to do it define a new class and extend the `WebDialog` class. Then you can add your custom logic and define a new custom element with your new class. Here's an example of what you could if you for example want a custom dialog that shows an image.
+It is totally possible to extend the dialog. The only thing you have to do is define a new class and extend the `WebDialog` class. Then you can add your custom logic and define a new custom element with your new class. Here's an example of what you could if you for example want a custom dialog that shows an image.
 
 ```js
 import { WebDialog } from "web-dialog";

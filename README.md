@@ -292,7 +292,7 @@ openDialog({
 
 ## ➤ Extend WebDialog
 
-It is totally possible to extend the dialog. The only thing you have to do it define a new class and extend the `WebDialog` class. Then you can add your custom logic and define a new custom element with your new class. Here's an example of what you could if you for example want a custom dialog that shows an image.
+It is totally possible to extend the dialog. The only thing you have to do is define a new class and extend the `WebDialog` class. Then you can add your custom logic and define a new custom element with your new class. Here's an example of what you could if you for example want a custom dialog that shows an image.
 
 ```js
 import { WebDialog } from "web-dialog";
@@ -397,7 +397,7 @@ A dialog web component that can be used to display highly interruptive messages.
 | Event     | Description                                      |
 |-----------|--------------------------------------------------|
 | `close`   | This event is fired when the dialog closes.      |
-| `closing` | This event is fired before the dialog is closed by clicking escape or on the backdrop. The event is cancellable. |
+| `closing` | This event is fired before the dialog is closed by clicking escape or on the backdrop. The event is cancellable which means `event.preventDefault()` can cancel the closing of the dialog. |
 | `open`    | This event is fired when the dialog opens.       |
 
 #### CSS Shadow Parts
@@ -411,8 +411,8 @@ A dialog web component that can be used to display highly interruptive messages.
 
 | Property                      | Description                                  |
 |-------------------------------|----------------------------------------------|
-| `--dialog-animation-duration` | Duration of the animation duration.          |
-| `--dialog-animation-easing`   | Easing of the animation.                     |
+| `--dialog-animation-duration` | Duration of the dialog animation.            |
+| `--dialog-animation-easing`   | Easing of the dialog animation.              |
 | `--dialog-backdrop-bg`        | Background of the backdrop.                  |
 | `--dialog-bg`                 | Background of the dialog.                    |
 | `--dialog-border-radius`      | Border radius of the dialog.                 |

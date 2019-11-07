@@ -16,7 +16,7 @@ template.innerHTML = `
  * A dialog web component that can be used to display highly interruptive messages.
  * @fires open - This event is fired when the dialog opens.
  * @fires close - This event is fired when the dialog closes.
- * @fires closing - This event is fired before the dialog is closed by clicking escape or on the backdrop. The event is cancellable.
+ * @fires closing - This event is fired before the dialog is closed by clicking escape or on the backdrop. The event is cancellable which means `event.preventDefault()` can cancel the closing of the dialog.
  * @cssprop --dialog-container-padding - Padding of the host container of the dialog.
  * @cssprop --dialog-z-index - Z-index of the dialog.
  * @cssprop --dialog-overflow-x - Overflow of the x-axis.
@@ -24,8 +24,8 @@ template.innerHTML = `
  * @cssprop --dialog-max-height - Max height of the dialog.
  * @cssprop --dialog-height - Height of the dialog.
  * @cssprop --dialog-backdrop-bg - Background of the backdrop.
- * @cssprop --dialog-animation-duration - Duration of the animation duration.
- * @cssprop --dialog-animation-easing - Easing of the animation.
+ * @cssprop --dialog-animation-duration - Duration of the dialog animation.
+ * @cssprop --dialog-animation-easing - Easing of the dialog animation.
  * @cssprop --dialog-border-radius - Border radius of the dialog.
  * @cssprop --dialog-box-shadow - Box shadow of the dialog.
  * @cssprop --dialog-max-width - Max width of the dialog.
