@@ -184,7 +184,7 @@ The dialog can dispatch 3 different events.
 Here's an example on how you'd use the events.
 
 ```js
-const $dialog = document.querySelector("dialog");
+const $dialog = document.querySelector("web-dialog");
 
 $dialog.addEventListener("open", () => {
   console.log("The dialog opened!");
@@ -210,9 +210,9 @@ $dialog.addEventListener("close", e => {
 If you want to use the dialog programmatically you can use the `openDialog(...)` function. This function makes sure to append content inside the dialog, adds it to the DOM and removes it when it closes. You can give an object with the following fields to the function.
 
 * **$content** - A DOM element that will be placed inside the dialog as content. This can also be a function that takes the dialog and appends the content for the dialog.
-* **$container** - The container where the dialog will be placed inside. As default this is the `body` element.
+* **$container** - A DOM element where the dialog will be placed inside. As default this is the `body` element.
 * **center** - Whether the dialog is centered. As default this is false.
-* **initialize** - A function that returns an instance of WebDialog. This is smart to overwrite if you for example have extended the WebDialog class and want to open that custom dialog instead.
+* **initialize** - A function that returns an instance of `WebDialog`. This is smart to overwrite if you for example have extended the WebDialog class and want to open that custom dialog instead.
 
 In it's most simple form you can open a dialog like this:
 
@@ -256,10 +256,10 @@ const {$dialog, resolver} = openDialog({
 });
 
 // Attach an event listener that sets the result and closes the dialog when a button is clicked
-$dialog.addEventListener("click", e => {
+$dialog.querySelectorAll("button").forEach($button => $button.addEventListener("click", e => {
   $dialog.result = e.target.getAttribute("data-value");
   $dialog.open = false;
-});
+}));
 
 // Wait for the result
 const result = await resolver;

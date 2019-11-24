@@ -5,10 +5,7 @@
 :host {
 	padding: var(--dialog-container-padding, 5vw 24px);
 	z-index: var(--dialog-z-index, 12345678);
-	overflow-x: var(--dialog-overflow-x, hidden);
-	overflow-y: var(--dialog-overflow-y, auto);
 	outline: none;
-	-webkit-overflow-scrolling: touch;
 }
 
 :host, #backdrop {
@@ -19,6 +16,13 @@
 	right: 0;
 }
 
+:host, :host([center]) #dialog {
+	overflow-x: var(--dialog-overflow-x, hidden);
+	overflow-y: var(--dialog-overflow-y, auto);
+	overscroll-behavior: contain;
+	-webkit-overflow-scrolling: touch;
+}
+
 :host([center]) {
 	display: flex;
 	align-items: center;
@@ -27,10 +31,7 @@
 }
 
 :host([center]) #dialog {
-	overflow-x: var(--dialog-overflow-x, hidden);
-	overflow-y: var(--dialog-overflow-y, auto);
 	max-height: var(--dialog-max-height, 100%);
-	-webkit-overflow-scrolling: touch
 }
 
 :host(:not([open])), :host(:not(:defined)) {
