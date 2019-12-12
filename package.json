@@ -39,19 +39,20 @@
 		"s:prod": "rollup -c rollup.config.ts --watch --environment NODE_ENV:prod",
 		"s": "npm run s:dev",
 		"readme": "readme generate",
-		"b:lib": "rollup -c rollup.config.build.ts",
+		"b:lib": "rollup -c rollup.config.build.ts && npm run wca",
 		"ncu": "ncu -u -a && npm update && npm install",
 		"postversion": "npm run readme && npm run b:lib",
 		"publish:patch": "np patch --contents=dist --no-cleanup",
 		"publish:minor": "np minor --contents=dist --no-cleanup",
-		"publish:major": "np major --contents=dist --no-cleanup"
+		"publish:major": "np major --contents=dist --no-cleanup",
+		"wca": "npx web-component-analyzer analyze src/lib --format json --outFile dist/custom-elements.json"
 	},
 	"devDependencies": {
-		"@appnest/web-config": "^0.4.32",
+		"@appnest/web-config": "^0.4.35",
 		"@appnest/readme": "^1.2.5"
 	},
 	"dependencies": {
-		"@a11y/focus-trap": "^1.0.4"
+		"@a11y/focus-trap": "^1.0.5"
 	},
 	"contributors": [
 		{
