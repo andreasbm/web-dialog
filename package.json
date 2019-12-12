@@ -1,6 +1,6 @@
 {
 	"name": "web-dialog",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "A highly accessible, customizable and lightweight dialog.",
 	"types": "index.d.ts",
 	"module": "index.js",
