@@ -48,7 +48,7 @@
 		"wca": "npx web-component-analyzer analyze src/lib --format json --outFile dist/custom-elements.json"
 	},
 	"devDependencies": {
-		"@appnest/web-config": "^0.4.35",
+		"@appnest/web-config": "^0.4.39",
 		"@appnest/readme": "^1.2.5"
 	},
 	"dependencies": {

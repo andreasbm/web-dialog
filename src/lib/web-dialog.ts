@@ -163,17 +163,14 @@ export class WebDialog<R = any> extends HTMLElement {
 	}
 
 	/**
-	 * When we open the dialog we need to.
-	 * 1. Save the current focus.
-	 * 2. Block the scrolling of the scroll container.
-	 * 3. Dispatch an open event.
+	 * Setup the dialog after it has opened.
 	 */
 	didOpen () {
 
-		// Save the current active element
+		// Save the current active element so we have a way of restoring the focus when the dialog is closed.
 		this.$previousActiveElement = traverseActiveElements(document.activeElement) as HTMLElement;
 
-		// Focus the first element in the focus trap
+		// Focus the first element in the focus trap.
 		// Wait for the dialog to show its content before we try to focus inside it.
 		// We request an animation frame to make sure the content is now visible.
 		requestAnimationFrame(() => {
@@ -181,54 +178,52 @@ export class WebDialog<R = any> extends HTMLElement {
 		});
 
 		// Make the dialog focusable
-		this.tabIndex = 1;
+		this.tabIndex = 0;
 
-		// Block the scrolling on the scroll container
+		// Block the scrolling on the scroll container to avoid the outside content to scroll.
 		this.$scrollContainer.style.overflow = `hidden`;
 
-		// Listen for key events
-		this.addEventListener("keydown", this.onKeyDown, {capture: true});
+		// Listen for key down events to close the dialog when escape is pressed.
+		this.addEventListener("keydown", this.onKeyDown, {capture: true, passive: true});
 
-		// Increment the dialog count with one
+		// Increment the dialog count with one to keep track of how many dialogs are currently nested.
 		setDialogCount(this.$scrollContainer, getDialogCount(this.$scrollContainer) + 1);
 
-		// Dispatch an event so the rest of the world knows we opened
+		// Dispatch an event so the rest of the world knows the dialog opened.
 		this.dispatchEvent(new CustomEvent("open"));
 	}
 
-
 	/**
-	 * When we close the dialog we need to.
-	 * 1. Restore the previous focus focus.
-	 * 2. Unblock the scrolling of the scroll container if there are no more dialogs.
-	 * 3. Dispatch a close event.
+	 * Clean up the dialog after it has closed.
 	 */
 	didClose () {
 
 		// Remove the listener listening for key events
 		this.removeEventListener("keydown", this.onKeyDown, {capture: true});
 
-		// Decrement the dialog count with one
+		// Decrement the dialog count with one to keep track of how many dialogs are currently nested.
 		setDialogCount(
 			this.$scrollContainer,
 			Math.max(0, getDialogCount(this.$scrollContainer) - 1)
 		);
 
-		// If there are now 0 active dialogs we unblock the scrolling from the scroll container
+		// If there are now 0 active dialogs we unblock the scrolling from the scroll container.
+		// This is because we know that no other dialogs are currently nested within the scroll container.
 		if (getDialogCount(this.$scrollContainer) <= 0) {
 			this.$scrollContainer.style.overflow = ``;
 		}
 
-		// Make the dialog unfocusable
+		// Make the dialog unfocusable.
 		this.tabIndex = -1;
 
-		// Restore previous active element
+		// Restore previous active element.
 		if (this.$previousActiveElement != null) {
 			this.$previousActiveElement.focus();
 			this.$previousActiveElement = null;
 		}
 
-		// Dispatch an event so the rest of the world knows we closed
+		// Dispatch an event so the rest of the world knows the dialog closed.
+		// If a result has been set, the result is added to the detail property of the event.
 		this.dispatchEvent(new CustomEvent("close", {detail: this.result}));
 	}
 

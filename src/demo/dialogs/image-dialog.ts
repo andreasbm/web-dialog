@@ -20,8 +20,10 @@ class ImageDialog extends WebDialog {
 	static get observedAttributes () { return ["src"]; }
 
 	// Make sure the src property is getting reflected as an attribute
-	get src () { return this.getAttribute("src"); }
-	set src (value) { this.setAttribute("src", value); }
+	get src (): string { return this.getAttribute("src") || ""; }
+	set src (value: string) { this.setAttribute("src", value); }
+
+	private $img!: HTMLImageElement;
 
 	constructor () {
 		super();
@@ -30,12 +32,12 @@ class ImageDialog extends WebDialog {
 		this.$dialog.appendChild($template.content.cloneNode(true));
 
 		// Get a reference to the img element
-		this.$img = this.shadowRoot.querySelector("#img");
+		this.$img = this.shadowRoot!.querySelector<HTMLImageElement>("#img")!;
 		this.$img.src = this.src;
 	}
 
 	// Each time the src attribute changes we set the src of the image element
-	attributeChangedCallback (name, newValue) {
+	attributeChangedCallback (name: string, newValue: string) {
 		switch (name) {
 			case "src":
 				this.$img.src = this.src;
