@@ -1,4 +1,4 @@
-<h1 align="center">web-dialog</h1>
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><h1 align="center">web-dialog</h1>
 <p align="center">
 		<a href="https://npmcharts.com/compare/web-dialog?minimal=true"><img alt="Downloads per month" src="https://img.shields.io/npm/dm/web-dialog.svg" height="20"/></a>
 <a href="https://www.npmjs.com/package/web-dialog"><img alt="NPM Version" src="https://img.shields.io/npm/v/web-dialog.svg" height="20"/></a>
@@ -44,6 +44,7 @@ Building a good dialog is hard - there are many things you might not think about
 * [➤ Documentation](#-documentation)
 	* [web-dialog](#web-dialog)
 		* [Properties](#properties)
+		* [Methods](#methods)
 		* [Events](#events)
 		* [CSS Shadow Parts](#css-shadow-parts)
 		* [CSS Custom Properties](#css-custom-properties)
@@ -255,10 +256,10 @@ const {$dialog, resolver} = openDialog({
   $content: $template.content.cloneNode(true)
 });
 
-// Attach an event listener that sets the result and closes the dialog when a button is clicked
+// Attach an event listener that sets the closes the dialog with the result when a button is clicked
 $dialog.querySelectorAll("button").forEach($button => $button.addEventListener("click", e => {
-  $dialog.result = e.target.getAttribute("data-value");
-  $dialog.open = false;
+  const result = e.target.dataset.value;
+  $dialog.close(result);
 }));
 
 // Wait for the result
@@ -382,15 +383,25 @@ A dialog web component that can be used to display highly interruptive messages.
 
 #### Properties
 
-| Property          | Attribute | Type             |
-|-------------------|-----------|------------------|
-| `$backdrop`       |           | `any`            |
-| `$dialog`         |           | `any`            |
-| `center`          | `center`  | `boolean`        |
-| `onBackdropClick` |           | `any`            |
-| `onKeyDown`       |           | `any`            |
-| `open`            | `open`    | `boolean`        |
-| `result`          |           | `R \| undefined` |
+| Property          | Attribute | Type             | Description                                 |
+|-------------------|-----------|------------------|---------------------------------------------|
+| `center`          | `center`  |                  | Whether the dialog is centered on the page. |
+| `onBackdropClick` |           |                  |                                             |
+| `onKeyDown`       |           |                  |                                             |
+| `open`            | `open`    |                  | Whether the dialog is opened.               |
+| `result`          |           | `R \| undefined` |                                             |
+
+#### Methods
+
+| Method            | Type                              | Description                                      |
+|-------------------|-----------------------------------|--------------------------------------------------|
+| `assertClosing`   | `(): any`                         | Dispatches an event that, if asserts whether the dialog can be closed.<br />If "preventDefault()" is called on the event, assertClosing will return true<br />if the event was not cancelled. It will return false if the event was cancelled. |
+| `close`           | `(result?: R \| undefined): void` | Closes the dialog with a result.                 |
+| `didClose`        | `(): void`                        | Clean up the dialog after it has closed.         |
+| `didOpen`         | `(): void`                        | Setup the dialog after it has opened.            |
+| `onBackdropClick` | `(): void`                        | Closes the dialog when the backdrop is clicked.  |
+| `onKeyDown`       | `(e: any): void`                  | Closes the dialog when escape is pressed.        |
+| `show`            | `(): void`                        | Shows the dialog.                                |
 
 #### Events
 

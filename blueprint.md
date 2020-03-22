@@ -201,10 +201,10 @@ const {$dialog, resolver} = openDialog({
   $content: $template.content.cloneNode(true)
 });
 
-// Attach an event listener that sets the result and closes the dialog when a button is clicked
+// Attach an event listener that sets the closes the dialog with the result when a button is clicked
 $dialog.querySelectorAll("button").forEach($button => $button.addEventListener("click", e => {
-  $dialog.result = e.target.getAttribute("data-value");
-  $dialog.open = false;
+  const result = e.target.dataset.value;
+  $dialog.close(result);
 }));
 
 // Wait for the result
