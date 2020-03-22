@@ -4,8 +4,8 @@ import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import { join, resolve } from "path";
 import precss from "precss";
-import commonjs from "rollup-plugin-commonjs";
-import nodeResolve from "rollup-plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import nodeResolve from "@rollup/plugin-node-resolve";
 import progress from "rollup-plugin-progress";
 import pkg from "./package.json";
 
