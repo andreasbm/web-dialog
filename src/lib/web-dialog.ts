@@ -88,7 +88,6 @@ export class WebDialog<R = any> extends HTMLElement {
 		this.onKeyDown = this.onKeyDown.bind(this);
 
 		// Set aria attributes
-		this.setAttribute("aria-modal", "true");
 		this.$dialog.setAttribute("role", "alertdialog");
 	}
 
@@ -96,6 +95,7 @@ export class WebDialog<R = any> extends HTMLElement {
 	 * Attaches event listeners when connected.
 	 */
 	connectedCallback () {
+		this.setAttribute("aria-modal", "true");
 		this.$backdrop.addEventListener("click", this.onBackdropClick);
 	}
 
